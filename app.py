@@ -8,16 +8,16 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import tensorflow as tf
 
 # Load the trained model
-model = tf.keras.models.load_model('/app/model/model.h5')
+model = tf.keras.models.load_model('model/model.h5')
 
 # Load the encoders and scaler
-with open('/app/model/label_encoder_gender.pkl', 'rb') as file:
+with open('model/label_encoder_gender.pkl', 'rb') as file:
     label_encoder_gender = pickle.load(file)
 
-with open('/app/model/onehot_encoder_geo.pkl', 'rb') as file:
+with open('model/onehot_encoder_geo.pkl', 'rb') as file:
     onehot_encoder_geo = pickle.load(file)
 
-with open('/app/model/scaler.pkl', 'rb') as file:
+with open('model/scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
 

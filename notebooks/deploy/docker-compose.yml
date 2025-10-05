@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  streamlit-app:
+    build: .
+    container_name: streamlit-ml
+    ports:
+      - "8502:8502"
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_ENABLE_CORS=false
+    restart: unless-stopped
+    # volumes:
+    #   - ../app:/app

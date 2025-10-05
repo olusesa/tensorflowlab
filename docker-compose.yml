@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  tensorflow-jupyter:
+    image: tensorflow/tensorflow:latest-jupyter   # Official TensorFlow image with Jupyter
+    container_name: tensorflow-jupyter
+    restart: unless-stopped
+    ports:
+      - "8888:8888"   # JupyterLab
+      - "6006:6006"   # TensorBoard
+      - "8501:8501"   # Streamlit
+    volumes:
+      - ./notebooks:/tf/notebooks   # Mount local notebooks
+    environment:
+      - JUPYTER_TOKEN=#SafeStrongPass123!   # Set your own token
+    command: >
+      bash -c "pip install --upgrade --ignore-installed blinker &&
+               pip install jupyterlab pandas numpy scikit-learn matplotlib streamlit &&
+               jupyter lab --ip=0.0.0.0 --no-browser --allow-root
+               --NotebookApp.token=$${JUPYTER_TOKEN}
+               --notebook-dir=/tf/notebooks"
